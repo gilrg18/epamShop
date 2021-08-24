@@ -13,25 +13,29 @@
 * npm i --save-dev babel-cli babel-preset-es2015 babel-preset-stage-0
 
 ## To run:
+
 **Must have running mysql db on port 3306 with database schema called myitems and table called items**
-CREATE TABLE `myitems`.`items` (
-  `itemID` INT NOT NULL,
-  `itemName` VARCHAR(60) NOT NULL,
-  `itemDescription` VARCHAR(250) NOT NULL,
-  `price` DECIMAL NOT NULL,
-  PRIMARY KEY (`itemID`),
-  UNIQUE INDEX `itemID_UNIQUE` (`itemID` ASC) VISIBLE);
+**CREATE TABLE `myitems`.`items` (**
+**`itemID` INT NOT NULL,**
+**`itemName` VARCHAR(60) NOT NULL,**
+**`itemDescription` VARCHAR(250) NOT NULL,**
+**`price` DECIMAL NOT NULL,**
+**PRIMARY KEY (`itemID`),**
+**UNIQUE INDEX `itemID_UNIQUE` (`itemID` ASC) VISIBLE);**
   
+> npm start
+
+## Tested with Postman:
 
 Update item 4 example:
-    localhost:3000/myItems/item/4
-    In postman: body -> raw ->
-    {
-        "itemName": "Gil",
-        "itemDescription": "Rogel",
-        "price": "22.50"
-    }
+localhost:3000/myItems/item/4
+In postman: PUT request -> body -> raw ->
+{
+"itemName": "Mug",
+"itemDescription": "Simple coffee mug",
+"price": "4.99"
+} 
 
-> npm start
+
 
 * Gilberto Rogel García
