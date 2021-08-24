@@ -1,4 +1,4 @@
-# Backend for myItems
+# Backend for epamShop
 # CRUD created with
 * NodeJS
 * Express
