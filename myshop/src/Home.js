@@ -7,6 +7,7 @@ const Home = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
+    
 
     React.useEffect(()=>{
         console.log('useEffect');
@@ -14,10 +15,14 @@ const Home = () => {
     }, [])
 
     const getItems = async () => {
-        const data = await fetch('/myItems/items/');
-        const items = await data.json();
-        console.log(items);
-        setItems(items);
+        try{
+            const data = await fetch('/myItems/items/');
+            const items = await data.json();
+            console.log(items);
+            setItems(items);
+        }catch(e){
+            console.log(`error: ${e}`);
+        }
     }
         
 
