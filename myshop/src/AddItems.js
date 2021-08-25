@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from "react-router-dom"
+
 
 const AddItems = () => {
 
@@ -49,7 +51,12 @@ const AddItems = () => {
                 <input onChange={(event) => handle(event)} id="itemName" value={item.itemName} placeholder="Item Name" type="text"></input>
                 <input onChange={(event) => handle(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
                 <input onChange={(event) => handle(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input>
+                <br></br><br></br>
                 <button className="btn btn-success" >Add Item</button>
+                &nbsp;&nbsp;
+                <Link to="/admin">
+                    <button type="button" className="btn btn-secondary">Return</button>
+                </Link>
             </form>
         </div>
     )

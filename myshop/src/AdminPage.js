@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemList from './ItemList';
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const AdminPage = () => {
 
@@ -25,6 +25,17 @@ const AdminPage = () => {
     };
 
 
+    const deleteItem = async (itemID) => {
+        
+        if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
+            await fetch(`/myItems/items/${itemID}`, {
+                method: 'DELETE'
+            });
+            window.alert(`Item with id ${itemID} has been deleted`)
+            getItems();
+        }
+    }
+
     return (
         <>
             <table className="table">
@@ -40,11 +51,23 @@ const AdminPage = () => {
                 <tbody>
                     {
                         myItems.map(item => {
-                            return <ItemList key={item.itemID}
-                                id={item.itemID}
-                                itemName={item.itemName}
-                                itemDescription={item.itemDescription}
-                                price={item.price} />
+                            return (
+                                <tr key={item.itemID}>
+                                    <th  scope="row">{item.itemID}</th>
+                                    <td>{item.itemName}</td>
+                                    <td>{item.itemDescription}</td>
+                                    <td>${item.price}</td>
+                                    <td>
+                                        <button type="button" className="btn btn-primary" >Update</button>
+                                        &nbsp;&nbsp;
+                                        <button type="button" className="btn btn-danger" onClick={() => deleteItem(item.itemID)}>Delete</button>
+                                    </td>
+                                </tr>)
+                            // return <ItemList key={item.itemID}
+                            //     id={item.itemID}
+                            //     itemName={item.itemName}
+                            //     itemDescription={item.itemDescription}
+                            //     price={item.price} />
                         })
                     }
                 </tbody>

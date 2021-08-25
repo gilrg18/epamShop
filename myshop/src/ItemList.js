@@ -1,20 +1,28 @@
 import React from 'react'
 
 
+
 const ItemList = (props) => {
 
 
     //deletes after refresh 
     const deleteItem = async (itemID) => {
+        
         if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
             await fetch(`/myItems/items/${itemID}`, {
                 method: 'DELETE'
             });
-
+            window.alert(`Item with id ${itemID} has been deleted`)
+           
         }
     }
 
-
+    //TERMINAR UPDATE 
+    // const[item, setItem] = React.useState({
+    //     itemName: "",
+    //     itemDescription: "",
+    //     price: ""
+    // })
 
     const updateItem = async (itemID) => {
         try {
@@ -25,9 +33,9 @@ const ItemList = (props) => {
                     'Content-type': 'application/json',
                 },
                 body: JSON.stringify({
-                    itemName: 'ASDASD',
-                    itemDescription: 'ASDASD',
-                    price: '123.555'
+                    itemName: "test",//item.itemName,
+                    itemDescription: "this will be deleted",//item.itemDescription,
+                    price: 55.55//item.price,
                 })
             });
             console.log(result)
@@ -45,7 +53,7 @@ const ItemList = (props) => {
                 <td>${props.price}</td>
                 <td>
                     <button type="button" className="btn btn-primary" onClick={() => updateItem(props.id)}>Update</button>
-                    &nbsp;&nbsp;
+                    &nbsp;&nbsp;                   
                     <button type="button" className="btn btn-danger" onClick={() => deleteItem(props.id)}>Delete</button>
                 </td>
             </tr>
