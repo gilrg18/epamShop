@@ -5,18 +5,6 @@ import React from 'react'
 const ItemList = (props) => {
 
 
-    //deletes after refresh 
-    const deleteItem = async (itemID) => {
-        
-        if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
-            await fetch(`/myItems/items/${itemID}`, {
-                method: 'DELETE'
-            });
-            window.alert(`Item with id ${itemID} has been deleted`)
-           
-        }
-    }
-
     //TERMINAR UPDATE 
     // const[item, setItem] = React.useState({
     //     itemName: "",
@@ -54,7 +42,7 @@ const ItemList = (props) => {
                 <td>
                     <button type="button" className="btn btn-primary" onClick={() => updateItem(props.id)}>Update</button>
                     &nbsp;&nbsp;                   
-                    <button type="button" className="btn btn-danger" onClick={() => deleteItem(props.id)}>Delete</button>
+                    <button type="button" className="btn btn-danger" onClick={() => props.deleteItem(props.id)}>Delete</button>
                 </td>
             </tr>
         </>
