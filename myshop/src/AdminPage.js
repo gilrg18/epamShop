@@ -25,14 +25,19 @@ const AdminPage = () => {
     };
 
 
-    const deleteItem = async (itemID) => {
-        
+    const deleteItem = async (itemID) => {       
         if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
             await fetch(`/myItems/items/${itemID}`, {
                 method: 'DELETE'
             });
             window.alert(`Item with id ${itemID} has been deleted`)
-            getItems();
+            //getItems(); delete directly from myItems
+            for( let i = 0; i < myItems.length; i++){                                   
+                if ( myItems[i].itemID === itemID) { 
+                    myItems.splice(i, 1); 
+                    setItems(myItems)
+                }
+            }
         }
     }
 
@@ -49,25 +54,14 @@ const AdminPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                {
                         myItems.map(item => {
-                            return (
-                                <tr key={item.itemID}>
-                                    <th  scope="row">{item.itemID}</th>
-                                    <td>{item.itemName}</td>
-                                    <td>{item.itemDescription}</td>
-                                    <td>${item.price}</td>
-                                    <td>
-                                        <button type="button" className="btn btn-primary" >Update</button>
-                                        &nbsp;&nbsp;
-                                        <button type="button" className="btn btn-danger" onClick={() => deleteItem(item.itemID)}>Delete</button>
-                                    </td>
-                                </tr>)
-                            // return <ItemList key={item.itemID}
-                            //     id={item.itemID}
-                            //     itemName={item.itemName}
-                            //     itemDescription={item.itemDescription}
-                            //     price={item.price} />
+                            return <ItemList key={item.itemID}
+                                id={item.itemID}
+                                itemName={item.itemName}
+                                itemDescription={item.itemDescription}
+                                price={item.price} 
+                                deleteItem={deleteItem}/>
                         })
                     }
                 </tbody>
