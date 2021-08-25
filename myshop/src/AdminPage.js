@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemList from './ItemList';
-
+import {Link} from "react-router-dom"
 
 const AdminPage = () => {
 
@@ -18,10 +18,10 @@ const AdminPage = () => {
             const items = await data.json();
             console.log(items);
             setItems(items);
-        }catch(e){
+        } catch (e) {
             console.log(`error: ${e}`)
         }
-       
+
     };
 
 
@@ -49,6 +49,10 @@ const AdminPage = () => {
                     }
                 </tbody>
             </table>
+            &nbsp;&nbsp;
+            <Link to="/admin/addItem">
+                <button type="button" className="btn btn-success" >Add Item</button>
+            </Link>
         </>
 
     );

@@ -41,17 +41,17 @@ export const getItemsWithID = (req, res) => {
 
 
 export const createItem = (req, res) => {
-  const newID = req.body.itemID,
-    newName = req.body.itemName,
+  //const newID = req.body.itemID,
+    const newName = req.body.itemName,
     newDescription = req.body.itemDescription,
     newPrice = req.body.price;
   connection.query(
-    "INSERT INTO items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
-    [newID, newName, newDescription, newPrice],
+    "INSERT INTO items (`itemName`, `itemDescription`, `price`) VALUES (?, ?, ?)",
+    [newName, newDescription, newPrice],
     (err, rows, field) => {
       // try {
         if (err) throw err;
-        console.log("Succesfully added item", newID);
+        console.log(`Succesfully added item, ${newName}`);
         res.json(rows);
       // } catch (err) {
       //   console.log('Error: ', err);

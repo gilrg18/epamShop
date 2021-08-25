@@ -27,7 +27,7 @@ const ItemList = (props) => {
                 body: JSON.stringify({
                     itemName: 'ASDASD',
                     itemDescription: 'ASDASD',
-                    price: '123'
+                    price: '123.555'
                 })
             });
             console.log(result)

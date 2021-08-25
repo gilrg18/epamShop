@@ -2,7 +2,6 @@ import React from 'react'
 import ItemCard from './ItemCard';
 
 
-
 const Home = () => {
 
     //Consume itemsAPI with useEffect
@@ -25,7 +24,6 @@ const Home = () => {
         }
     }
         
-
     return (
         <>
         <h1 className="text-center mt-3">myShop</h1>
