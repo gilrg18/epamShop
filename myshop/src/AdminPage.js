@@ -17,7 +17,8 @@ const AdminPage = () => {
         const items = await data.json();
         console.log(items);
         setItems(items);
-    }
+    };
+
 
     return (
         <>
