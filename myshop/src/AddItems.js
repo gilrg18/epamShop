@@ -10,6 +10,8 @@ const AddItems = () => {
         price: ""
     })
 
+ 
+
     const addItem = async () => {
         if (window.confirm('Are you sure you want to add a new Item?')) {
             if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
@@ -34,7 +36,7 @@ const AddItems = () => {
     }
 
 
-    function handle(e) {
+    function handleItemValues(e) {
         const newItem = { ...item }
         newItem[e.target.id] = e.target.value
         console.log(e)
@@ -48,9 +50,9 @@ const AddItems = () => {
     return (
         <div>
             <form onSubmit={() => addItem()}>
-                <input onChange={(event) => handle(event)} id="itemName" value={item.itemName} placeholder="Item Name" type="text"></input>
-                <input onChange={(event) => handle(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
-                <input onChange={(event) => handle(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input>
+                <input onChange={(event) => handleItemValues(event)} id="itemName" value={item.itemName} placeholder="Item Name" type="text"></input>
+                <input onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
+                <input onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input>
                 <br></br><br></br>
                 <button className="btn btn-success" >Add Item</button>
                 &nbsp;&nbsp;
