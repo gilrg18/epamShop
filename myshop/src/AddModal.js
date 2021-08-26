@@ -1,17 +1,18 @@
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 
-const AddModal = () => {
+const AddModal = ({ myItems, setItems }) => {
 
     const [item, setItem] = React.useState({
+        itemID: "",
         itemName: "",
         itemDescription: "",
         price: ""
     })
 
     const addItem = async () => {
-        handleShow();
+        item.itemID = getNewKey();
         if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
             window.alert("Items must not have empty values")
         } else {
@@ -29,11 +30,13 @@ const AddModal = () => {
                         'Content-type': 'application/json',
                     },
                     body: JSON.stringify({
+                        itemID: item.itemID,
                         itemName: item.itemName,
                         itemDescription: item.itemDescription,
                         price: newPrice
                     })
                 })
+                setItems([...myItems, item])
                 window.alert(`Item ${item.itemName} has been added`)
             } catch (error) {
                 console.log(`error: ${error}`)
@@ -44,7 +47,13 @@ const AddModal = () => {
 
     }
 
-    function handleItemValues(e) {
+    const getNewKey = () => {
+        const myKey = myItems[myItems.length - 1].itemID + 1
+        console.log('id', myKey, typeof myKey)
+        return myKey;
+    }
+
+    const handleItemValues = (e) => {
         const newItem = { ...item }
         newItem[e.target.id] = e.target.value
         console.log(e)
@@ -52,10 +61,12 @@ const AddModal = () => {
         console.log(e.target.value)
         setItem(newItem)
         console.log(newItem)
+        getNewKey();
+
     }
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false)    
+    const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
 
@@ -70,19 +81,36 @@ const AddModal = () => {
                     <Modal.Title>Add Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input onChange={(event) => handleItemValues(event)} id="itemName" value={item.itemName} placeholder="Item Name" type="text"></input>
-                    <input onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
-                    <input onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input>
+                    <InputGroup size="sm" className="mb-3">
+                        <InputGroup.Text id="inputGroup-sizing-default">Item Name</InputGroup.Text><FormControl
+                            onChange={(event) => handleItemValues(event)} id="itemName" value={item.itemName} placeholder="Item Name" type="text"
+                        />
+                    </InputGroup>
+                    <InputGroup size="sm" className="mb-3">
+                        <InputGroup.Text id="inputGroup-sizing-default">Item Description</InputGroup.Text><FormControl
+                            onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"
+                        />
+                    </InputGroup>
+                    <InputGroup size="sm" className="mb-3">
+                        <InputGroup.Text id="inputGroup-sizing-default">Item Price</InputGroup.Text><FormControl
+                            onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"
+                        />
+                    </InputGroup>
+
+
+                    {/* <input onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
+                    <input onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input> */}
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success" onClick= {addItem}>
+                    <Button variant="success" onClick={addItem}>
                         Add Item
 
                     </Button>
-                   <ConfirmationModal/>
+                    <ConfirmationModal />
                 </Modal.Footer>
             </Modal>
         </>

@@ -7,11 +7,12 @@ const AdminPage = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
-
+    
     React.useEffect(() => {
         console.log('useEffect');
         //setItems(Api.getItems());
         getItems()
+
     }, [])
 
 
@@ -49,7 +50,7 @@ const AdminPage = () => {
                         <th>Item Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action &nbsp;&nbsp;<AddModal key={myItems.length} myItems={myItems} setItems={setItems} /></th>
+                        <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
 
                     </tr>
                 </thead>
