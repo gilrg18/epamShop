@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemList from './ItemList';
 import AddModal from './AddModal';
-import Api from './Api';
+
 
 const AdminPage = () => {
 
@@ -35,7 +35,6 @@ const AdminPage = () => {
                 method: 'DELETE'
             });
             window.alert(`Item with id ${itemID} has been deleted`)
-            //delete directly from myItems
             const newItemList = myItems.filter((item) => item.itemID !== itemID);
             setItems(newItemList)
         }
@@ -50,7 +49,7 @@ const AdminPage = () => {
                         <th>Item Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
+                        <th>Action &nbsp;&nbsp;<AddModal getItems={getItems} myItems={myItems} setItems={setItems} /></th>
 
                     </tr>
                 </thead>
@@ -58,11 +57,12 @@ const AdminPage = () => {
                     {
                         myItems.map(item => {
                             return <ItemList key={item.itemID}
-                                id={item.itemID}
+                                itemID={item.itemID}
                                 itemName={item.itemName}
                                 itemDescription={item.itemDescription}
                                 price={item.price}
-                                deleteItem={deleteItem} />
+                                deleteItem={deleteItem} 
+                                getItems={getItems}/>
                         })
                     }
                 </tbody>
