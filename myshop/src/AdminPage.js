@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemList from './ItemList';
-import { Link } from "react-router-dom"
+import AddModal from './AddModal';
 
 const AdminPage = () => {
 
@@ -50,7 +50,8 @@ const AdminPage = () => {
                         <th>Item Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th>Action &nbsp;&nbsp;&nbsp; <AddModal/></th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -67,9 +68,7 @@ const AdminPage = () => {
                 </tbody>
             </table>
             &nbsp;&nbsp;
-            <Link to="/admin/addItem">
-                <button type="button" className="btn btn-success" >Add Item</button>
-            </Link>
+            
         </>
 
     );
