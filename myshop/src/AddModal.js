@@ -2,7 +2,7 @@ import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 
-const AddModal = ({ myItems, setItems }) => {
+const AddModal = ({ getItems, myItems, setItems }) => {
 
     const [item, setItem] = React.useState({
         itemID: "",
@@ -11,15 +11,13 @@ const AddModal = ({ myItems, setItems }) => {
         price: ""
     })
 
-    const addItem = async () => {
-        item.itemID = getNewKey();
+    const addItem = async (newKey) => {
+        item.itemID = newKey;
         if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
             window.alert("Items must not have empty values")
         } else {
             try {
                 let newPrice = Number(parseFloat(item.price).toFixed(2))
-                console.log(newPrice)
-                console.log(typeof newPrice)
                 if (isNaN(newPrice) || typeof newPrice !== 'number') {
                     throw new Error(`Price ${newPrice} must be a number`);
                 }
@@ -36,11 +34,13 @@ const AddModal = ({ myItems, setItems }) => {
                         price: newPrice
                     })
                 })
-                setItems([...myItems, item])
+                //setItems([...myItems, item])
+                getItems();
                 window.alert(`Item ${item.itemName} has been added`)
             } catch (error) {
                 console.log(`error: ${error}`)
             }
+
             handleClose();
         }
 
@@ -49,25 +49,21 @@ const AddModal = ({ myItems, setItems }) => {
 
     const getNewKey = () => {
         const myKey = myItems[myItems.length - 1].itemID + 1
-        console.log('id', myKey, typeof myKey)
         return myKey;
     }
 
     const handleItemValues = (e) => {
         const newItem = { ...item }
         newItem[e.target.id] = e.target.value
-        console.log(e)
-        console.log(e.target.id)
-        console.log(e.target.value)
         setItem(newItem)
-        console.log(newItem)
         getNewKey();
 
     }
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+
 
 
     return (
@@ -97,16 +93,12 @@ const AddModal = ({ myItems, setItems }) => {
                         />
                     </InputGroup>
 
-
-                    {/* <input onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"></input>
-                    <input onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"></input> */}
-
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success" onClick={addItem}>
+                    <Button variant="success" onClick={()=>addItem(getNewKey())}>
                         Add Item
 
                     </Button>
@@ -119,5 +111,3 @@ const AddModal = ({ myItems, setItems }) => {
 }
 
 export default AddModal;
-
-//  <ConfirmationModal close={closeModal} open={openModal} isOpen={isOpen} />
