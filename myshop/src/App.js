@@ -5,6 +5,7 @@ import AdminPage from './AdminPage';
 import AddModal from './AddModal';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Component } from 'react';
+import ConfirmationModal from './ConfirmationModal';
 
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
       <>
         <BrowserRouter>
           <Switch>
-            
+          <Route path='/confirmation' exact component={ConfirmationModal} />
             <Route path='/' exact component={Home} />
             <Route path='/modal' exact component={AddModal}/>
             <Route path='/admin' exact component={AdminPage} />

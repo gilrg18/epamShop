@@ -1,5 +1,6 @@
 import { Modal, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
+import ConfirmationModal from './ConfirmationModal';
 
 const AddModal = () => {
 
@@ -10,37 +11,37 @@ const AddModal = () => {
     })
 
     const addItem = async () => {
-        if (window.confirm('Are you sure you want to add a new Item?')) {
-            if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
-                window.alert("Items must not have empty values")
-            }else {
-                try {
-                    let newPrice = Number(parseFloat(item.price).toFixed(2))
-                    console.log(newPrice)
-                    console.log(typeof newPrice)
-                    if (isNaN(newPrice) || typeof newPrice !== 'number') {
-                        throw new Error(`Price ${newPrice} must be a number`);
-                    }
-                    await fetch(`/myItems/items/`, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            itemName: item.itemName,
-                            itemDescription: item.itemDescription,
-                            price: newPrice
-                        })
-                    })
-                    window.alert(`Item ${item.itemName} has been added`)
-                }catch(error){
-                    console.log(`error: ${error}`)
+        handleShow();
+        if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
+            window.alert("Items must not have empty values")
+        } else {
+            try {
+                let newPrice = Number(parseFloat(item.price).toFixed(2))
+                console.log(newPrice)
+                console.log(typeof newPrice)
+                if (isNaN(newPrice) || typeof newPrice !== 'number') {
+                    throw new Error(`Price ${newPrice} must be a number`);
                 }
-                handleClose();
+                await fetch(`/myItems/items/`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        itemName: item.itemName,
+                        itemDescription: item.itemDescription,
+                        price: newPrice
+                    })
+                })
+                window.alert(`Item ${item.itemName} has been added`)
+            } catch (error) {
+                console.log(`error: ${error}`)
             }
-
+            handleClose();
         }
+
+
     }
 
     function handleItemValues(e) {
@@ -54,9 +55,9 @@ const AddModal = () => {
     }
 
     const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false)    
+    const handleShow = () => setShow(true)
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     return (
         <>
@@ -77,9 +78,11 @@ const AddModal = () => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={addItem}>
+                    <Button variant="success" onClick= {addItem}>
                         Add Item
+
                     </Button>
+                   <ConfirmationModal/>
                 </Modal.Footer>
             </Modal>
         </>
@@ -88,3 +91,5 @@ const AddModal = () => {
 }
 
 export default AddModal;
+
+//  <ConfirmationModal close={closeModal} open={openModal} isOpen={isOpen} />
