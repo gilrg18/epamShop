@@ -2,7 +2,7 @@ import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 
-const AddModal = ({ getItems, myItems, setItems }) => {
+const AddModal = ({ getItems, myItems}) => {
 
     const [item, setItem] = React.useState({
         itemID: "",
@@ -56,7 +56,6 @@ const AddModal = ({ getItems, myItems, setItems }) => {
         const newItem = { ...item }
         newItem[e.target.id] = e.target.value
         setItem(newItem)
-        getNewKey();
 
     }
 
