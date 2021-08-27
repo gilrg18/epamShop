@@ -12,10 +12,14 @@ code {
     monospace;
 }
 
+
 .block{
   background-color: rgba(73,194,210,255);
   padding:1rem;
   margin:0.5rem;
-  border-radius:1rem;
+  border-radius:0.5rem;
 }
 
+.epamColor{
+  background-color: rgba(73,194,210,255);
+}

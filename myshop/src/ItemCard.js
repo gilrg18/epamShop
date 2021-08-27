@@ -1,20 +1,23 @@
 import React from 'react';
-import { Link } from "react-router-dom"
 import { Image } from 'react-bootstrap';
 
 const ItemCard = (props) => {
+   const {item, onAdd} = props;
     return (
         <>
             <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4 ">
                 <div className="card shadow"  >
-                    <Image src={props.image} height='250' className="card-img-top " alt='item' rounded />
+                    <Image src={item.image} height='250' className="card-img-top " alt='item' rounded />
                     <div className="card-body">
-                        <h4 className="card-title">{props.itemName}</h4>
-                        <p className="card-text">{props.itemDescription}</p>
-                        <p className="card-text">${props.price}</p>
-                        <Link to='/cart'>
-                            <button type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
-                        </Link>
+                        <h4 className="card-title">{item.itemName}</h4>
+                        <p className="card-text">{item.itemDescription}</p>
+                        <p className="card-text">${item.price}</p>
+                        
+                            <button onClick={()=>{
+                                onAdd(item)
+                                 console.log(item)}
+                        } type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
+                        
                     </div>
                 </div>
             </div>
