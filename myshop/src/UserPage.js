@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemCard from './ItemCard';
-
+import Api from './Api'
 
 const UserPage = () => {
 
@@ -9,24 +9,18 @@ const UserPage = () => {
     
 
     React.useEffect(()=>{
-        getItems();
+        const fetchItems = async () => {
+            const items = await Api.getItems();
+            setItems(items);
+        }
+        fetchItems();
     }, [])
 
-    const getItems = async () => {
-        try{
-            const data = await fetch('/myItems/items/');
-            const items = await data.json();
-            setItems(items);
-        }catch(e){
-            console.log(`error: ${e}`);
-        }
-    }
-        
     return (
         <>
         <h1 className="display-4 text-center mt-3">epamShop</h1>
         <section className="pi-4 container">
-        <div className="row justify-content-center">
+        <div className="row justify-content-center block shadow">
             {
                 myItems.map(item =>{
                    return <ItemCard key={item.itemID} 
@@ -38,6 +32,7 @@ const UserPage = () => {
             }
         </div>
         </section>
+        
         </>
     );
 }
