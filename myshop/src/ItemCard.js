@@ -13,7 +13,7 @@ const ItemCard = (props) => {
                         <p className="card-text">{props.itemDescription}</p>
                         <p className="card-text">${props.price}</p>
                         <Link to='/cart'>
-                            <button type="button" className="btn btn-success">Add to Cart</button>
+                            <button type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
                         </Link>
                     </div>
                 </div>

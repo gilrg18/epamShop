@@ -41,6 +41,7 @@ const AdminPage = () => {
 
     return (
         <>
+            <h1 className="display-4 text-center mt-3">epamShop Admin</h1>
             <Table bordered hover>
                 <thead>
                     <tr>

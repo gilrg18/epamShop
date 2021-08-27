@@ -14,7 +14,7 @@ const ItemList = (props) => {
                 <td>
                     <UpdateModal getItems={props.getItems} itemID={props.itemID}/>
                     &nbsp;&nbsp;                   
-                    <button type="button" className="btn btn-danger" onClick={() => props.deleteItem(props.itemID)}>Delete</button>
+                    <button type="button" className="btn btn-danger rounded-pill" onClick={() => props.deleteItem(props.itemID)}>Delete</button>
                 </td>
             </tr>
         </>

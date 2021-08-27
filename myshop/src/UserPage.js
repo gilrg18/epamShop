@@ -24,7 +24,7 @@ const UserPage = () => {
         
     return (
         <>
-        <h1 className="text-center mt-3">myShop</h1>
+        <h1 className="display-4 text-center mt-3">epamShop</h1>
         <section className="pi-4 container">
         <div className="row justify-content-center">
             {

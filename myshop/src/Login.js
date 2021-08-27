@@ -22,7 +22,7 @@ const Login = () => {
                                             <div className="form-group mb-3">
                                                 <input id="inputPassword" type="password" placeholder="Password" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                             </div>
-                                            <button type="submit" className="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
+                                            <button type="submit" className="btn btn-primary btn-block rounded-pill shadow">Sign in</button>
                                         </form>
                                     </div>
                                 </div>

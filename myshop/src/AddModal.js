@@ -67,12 +67,12 @@ const AddModal = ({ getItems, myItems }) => {
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
+            <Button variant="success rounded-pill" onClick={handleShow}>
                 Add Item
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Item</Modal.Title>
+                    <Modal.Title className="display-6">Add Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <InputGroup size="sm" className="mb-3">
@@ -85,7 +85,7 @@ const AddModal = ({ getItems, myItems }) => {
                             onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"
                         />
                     </InputGroup>
-                    <InputGroup size="sm" className="mb-3">
+                    <InputGroup size="sm" className="rounded-pill mb-3">
                         <InputGroup.Text id="inputGroup-sizing-default">Item Price</InputGroup.Text><FormControl
                             onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"
                         />
@@ -93,10 +93,10 @@ const AddModal = ({ getItems, myItems }) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary rounded-pill" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success" onClick={() => addItem(getNewKey())}>
+                    <Button variant="success rounded-pill" onClick={() => addItem(getNewKey())}>
                         Add Item
 
                     </Button>

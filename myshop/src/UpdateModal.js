@@ -63,13 +63,13 @@ const UpdateModal = (props) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="primary rounded-pill" onClick={handleShow}>
                 Update
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Update</Modal.Title>
+                    <Modal.Title className="display-6">Update</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <InputGroup size="sm" className="mb-3">
@@ -90,10 +90,10 @@ const UpdateModal = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary rounded-pill" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={() => updateItem(props.itemID)}>
+                    <Button variant="primary rounded-pill" onClick={() => updateItem(props.itemID)}>
                         Update Item
 
                     </Button>
