@@ -2,6 +2,7 @@ import React from 'react'
 import ItemList from './ItemList';
 import AddModal from './AddModal';
 import {Table} from 'react-bootstrap'
+import Toasts from './toasts/Toasts'
 
 const AdminPage = () => {
 
@@ -9,7 +10,6 @@ const AdminPage = () => {
     const [myItems, setItems] = React.useState([]);
     
     React.useEffect(() => {
-        console.log('useEffect');
         //setItems(Api.getItems());
         getItems()
 
@@ -20,7 +20,6 @@ const AdminPage = () => {
         try {
             const data = await fetch('/myItems/items/');
             const items = await data.json();
-            console.log(items);
             setItems(items);
         } catch (e) {
             console.log(`error: ${e}`)
@@ -34,7 +33,7 @@ const AdminPage = () => {
             await fetch(`/myItems/items/${itemID}`, {
                 method: 'DELETE'
             });
-            window.alert(`Item with id ${itemID} has been deleted`)
+            Toasts.sucess(`Item with id ${itemID} has been deleted`)
             const newItemList = myItems.filter((item) => item.itemID !== itemID);
             setItems(newItemList)
         }

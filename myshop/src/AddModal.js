@@ -1,9 +1,7 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import Toasts from './toasts/Toasts'
 
-toast.configure();
 const AddModal = ({ getItems, myItems }) => {
 
     const [item, setItem] = React.useState({
@@ -17,12 +15,13 @@ const AddModal = ({ getItems, myItems }) => {
         item.itemID = newKey;
         try {
             if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
-                notify("Items must not have empty values")
+                Toasts.error("Items must not have empty values" )
                 throw new Error("Items must not have empty values")
             }
             let newPrice = Number(parseFloat(item.price).toFixed(2))
             if (isNaN(newPrice) || typeof newPrice !== 'number') {
-                throw new Error(`Price must be a number`);
+                Toasts.error ("Price must be a number")
+                throw new Error("Price must be a number");
             }
             await fetch(`/myItems/items/`, {
                 method: 'POST',
@@ -39,11 +38,9 @@ const AddModal = ({ getItems, myItems }) => {
             })
             //setItems([...myItems, item])
             getItems();
-            console.log(`Item ${item.itemName} has been added`)
+            Toasts.sucess(`Item ${item.itemName} has been added`)
         } catch (error) {
-            notify(error)
-            console.log(`error: ${error}`)
-            
+            console.log(`error: ${error}`)          
         }
 
         handleClose();
@@ -60,10 +57,6 @@ const AddModal = ({ getItems, myItems }) => {
         newItem[e.target.id] = e.target.value
         setItem(newItem)
 
-    }
-
-    const notify =(message)=> {
-        toast(message)
     }
 
     const [show, setShow] = useState(false);
