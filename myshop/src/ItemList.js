@@ -12,7 +12,7 @@ const ItemList = (props) => {
                 <td>{props.itemDescription}</td>
                 <td>${props.price}</td>
                 <td>
-                    <UpdateModal getItems={props.getItems} itemID={props.itemID}/>
+                    <UpdateModal setItems={props.setItems} itemID={props.itemID}/>
                     &nbsp;&nbsp;                   
                     <button type="button" className="btn btn-danger rounded-pill" onClick={() => props.deleteItem(props.itemID)}>Delete</button>
                 </td>

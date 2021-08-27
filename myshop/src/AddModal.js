@@ -1,8 +1,9 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
 import Toasts from './toasts/Toasts'
+import Api from './Api';
 
-const AddModal = ({ getItems, myItems }) => {
+const AddModal = (props) => {
 
     const [item, setItem] = React.useState({
         itemID: "",
@@ -15,12 +16,12 @@ const AddModal = ({ getItems, myItems }) => {
         item.itemID = newKey;
         try {
             if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
-                Toasts.error("Items must not have empty values" )
+                Toasts.error("Items must not have empty values")
                 throw new Error("Items must not have empty values")
             }
             let newPrice = Number(parseFloat(item.price).toFixed(2))
             if (isNaN(newPrice) || typeof newPrice !== 'number') {
-                Toasts.error ("Price must be a number")
+                Toasts.error("Price must be a number")
                 throw new Error("Price must be a number");
             }
             await fetch(`/myItems/items/`, {
@@ -37,10 +38,11 @@ const AddModal = ({ getItems, myItems }) => {
                 })
             })
             //setItems([...myItems, item])
-            getItems();
+            const items = await Api.getItems();
+            props.setItems(items);
             Toasts.sucess(`Item ${item.itemName} has been added`)
         } catch (error) {
-            console.log(`error: ${error}`)          
+            console.log(`error: ${error}`)
         }
 
         handleClose();
@@ -48,7 +50,7 @@ const AddModal = ({ getItems, myItems }) => {
     }
 
     const getNewKey = () => {
-        const myKey = myItems[myItems.length - 1].itemID + 1
+        const myKey = props.myItems[props.myItems.length - 1].itemID + 1
         return myKey;
     }
 
