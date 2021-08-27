@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemList from './ItemList';
 import AddModal from './AddModal';
-
+import {Table} from 'react-bootstrap'
 
 const AdminPage = () => {
 
@@ -42,8 +42,8 @@ const AdminPage = () => {
 
     return (
         <>
-            <table className="table">
-                <thead className="thead-light">
+            <Table bordered hover>
+                <thead>
                     <tr>
                         <th>id</th>
                         <th>Item Name</th>
@@ -66,7 +66,7 @@ const AdminPage = () => {
                         })
                     }
                 </tbody>
-            </table>
+            </Table>
             &nbsp;&nbsp;
 
         </>
