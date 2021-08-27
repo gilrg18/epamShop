@@ -1,0 +1,10 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('https://media.glassdoor.com/l/0f/81/1f/ce/epam-mexico.jpg') ;
+  /* background-image: url('https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg'); */
+  background-size: cover;
+  background-position: center center;
+}
