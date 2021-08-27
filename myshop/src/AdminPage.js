@@ -2,7 +2,6 @@ import React from 'react'
 import ItemList from './ItemList';
 import AddModal from './AddModal';
 import { Table } from 'react-bootstrap'
-import Toasts from './toasts/Toasts'
 import Api from './Api'
 
 const AdminPage = () => {
@@ -18,17 +17,6 @@ const AdminPage = () => {
         fetchItems();
     }, [])
 
-
-    const deleteItem = async (itemID) => {
-        if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
-            await fetch(`/myItems/items/${itemID}`, {
-                method: 'DELETE'
-            });
-            Toasts.sucess(`Item with id ${itemID} has been deleted`)
-            const newItemList = myItems.filter((item) => item.itemID !== itemID);
-            setItems(newItemList)
-        }
-    }
 
     return (
         <>
@@ -52,7 +40,6 @@ const AdminPage = () => {
                                 itemName={item.itemName}
                                 itemDescription={item.itemDescription}
                                 price={item.price}
-                                deleteItem={deleteItem}
                                 setItems={setItems} />
                         })
                     }

@@ -1,4 +1,6 @@
 
+import Toasts from './toasts/Toasts'
+
 class Api {
 
     getItems = async () => {
@@ -12,6 +14,17 @@ class Api {
             return null;
         }
 
+    };
+
+    deleteItem = async (itemID) => {
+        if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
+            await fetch(`/myItems/items/${itemID}`, {
+                method: 'DELETE'
+            });
+            Toasts.sucess(`Item with id ${itemID} has been deleted`)
+            // const newItemList = myItems.filter((item) => item.itemID !== itemID);
+            // return newItemList;
+        }
     };
 
 }
