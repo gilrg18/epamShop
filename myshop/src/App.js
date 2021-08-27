@@ -1,5 +1,5 @@
 import './App.css';
-import Home from './Home.js';
+import UserPage from './UserPage.js';
 import Cart from './Cart';
 import AdminPage from './AdminPage';
 import AddModal from './AddModal';
@@ -15,7 +15,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
           <Route path='/confirmation' exact component={ConfirmationModal} />
-            <Route path='/' exact component={Home} />
+            <Route path='/user' exact component={UserPage} />
             <Route path='/modal' exact component={AddModal}/>
             <Route path='/admin' exact component={AdminPage} />
             <Route path='/cart' exact component={Cart} />

@@ -2,14 +2,13 @@ import React from 'react'
 import ItemCard from './ItemCard';
 
 
-const Home = () => {
+const UserPage = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
     
 
     React.useEffect(()=>{
-        console.log('useEffect');
         getItems();
     }, [])
 
@@ -17,7 +16,6 @@ const Home = () => {
         try{
             const data = await fetch('/myItems/items/');
             const items = await data.json();
-            console.log(items);
             setItems(items);
         }catch(e){
             console.log(`error: ${e}`);
@@ -44,4 +42,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default UserPage;
