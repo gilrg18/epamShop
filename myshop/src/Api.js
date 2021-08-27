@@ -7,7 +7,6 @@ class Api {
         try {
             const data = await fetch('/myItems/items/');
             const items = await data.json();
-            console.log(items);
             return items;
         } catch (e) {
             console.log(`error: ${e}`)
@@ -22,8 +21,6 @@ class Api {
                 method: 'DELETE'
             });
             Toasts.sucess(`Item with id ${itemID} has been deleted`)
-            // const newItemList = myItems.filter((item) => item.itemID !== itemID);
-            // return newItemList;
         }
     };
 
