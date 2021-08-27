@@ -6,7 +6,6 @@ class Api {
             const data = await fetch('/myItems/items/');
             const items = await data.json();
             console.log(items);
-            //setItems(items);
             return items;
         } catch (e) {
             console.log(`error: ${e}`)

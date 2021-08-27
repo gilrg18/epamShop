@@ -3,29 +3,18 @@ import ItemList from './ItemList';
 import AddModal from './AddModal';
 import {Table} from 'react-bootstrap'
 import Toasts from './toasts/Toasts'
+import Api from './Api'
 
 const AdminPage = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
     
-    React.useEffect(() => {
-        //setItems(Api.getItems());
-        getItems()
+    React.useEffect(async () => {
+        const items = await Api.getItems();
+        setItems(items);
 
     }, [])
-
-
-    const getItems = async () => {
-        try {
-            const data = await fetch('/myItems/items/');
-            const items = await data.json();
-            setItems(items);
-        } catch (e) {
-            console.log(`error: ${e}`)
-        }
-
-    };
 
 
     const deleteItem = async (itemID) => {
@@ -49,7 +38,7 @@ const AdminPage = () => {
                         <th>Item Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action &nbsp;&nbsp;<AddModal getItems={getItems} myItems={myItems} setItems={setItems} /></th>
+                        <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
 
                     </tr>
                 </thead>
@@ -62,7 +51,7 @@ const AdminPage = () => {
                                 itemDescription={item.itemDescription}
                                 price={item.price}
                                 deleteItem={deleteItem} 
-                                getItems={getItems}/>
+                               />
                         })
                     }
                 </tbody>
