@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemList from './ItemList';
 import AddModal from './AddModal';
-import {Table} from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 import Toasts from './toasts/Toasts'
 import Api from './Api'
 
@@ -9,11 +9,13 @@ const AdminPage = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
-    
-    React.useEffect(async () => {
-        const items = await Api.getItems();
-        setItems(items);
 
+    React.useEffect(() => {
+        const fetchItems = async () => {
+            const items = await Api.getItems();
+            setItems(items);
+        }
+        fetchItems();
     }, [])
 
 
@@ -50,8 +52,8 @@ const AdminPage = () => {
                                 itemName={item.itemName}
                                 itemDescription={item.itemDescription}
                                 price={item.price}
-                                deleteItem={deleteItem} 
-                               />
+                                deleteItem={deleteItem}
+                                setItems={setItems} />
                         })
                     }
                 </tbody>
