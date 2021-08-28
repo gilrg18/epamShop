@@ -2,11 +2,13 @@ import React from 'react'
 import ItemCard from './ItemCard';
 import Api from './Api'
 import Cart from './Cart';
+import { CartContext } from './CartContext';
 
 const UserPage = () => {
 
     //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
+    const [cart, setCart] = React.useContext(CartContext)
 
 
     React.useEffect(() => {
@@ -18,30 +20,38 @@ const UserPage = () => {
         fetchItems();
     }, [])
 
-    const [cartItems, setCartItems] = React.useState([])
 
-    const onAdd = (item) => {
-        const exist = cartItems.find(cartItem => cartItem.itemID === item.itemID)
-        console.log(exist)
-        console.log(cartItems.length)
-        console.log(cartItems)
-        cartItems.map(item => console.log(item))
+    const addToCart = (item) => {
+        const itemToAdd = { itemID: item.itemID, itemName: item.itemName, price: item.price }
+        const exist = cart.find(cartItem => cartItem.itemID === itemToAdd.itemID)
         if (exist) {
-            //console.log(cartItems)
-            setCartItems(
-                cartItems.map(cartItem =>
-                    cartItem.itemId === item.itemID ? { ...exist, qty: exist.qty + 1 } : cartItem
+            setCart(
+                cart.map(currentItem =>
+                    currentItem.itemID === exist.itemID ? { ...exist, quantity: exist.quantity + 1 } : currentItem
+                )
+            );
+        } else {
+            setCart(currentState => [...currentState, { ...itemToAdd, quantity: 1 }]);
+        }
+    }
+
+    const removeFromCart = (item) => {
+        const exist = cart.find(cartItem => cartItem.itemID === item.itemID)
+        if (exist.quantity === 1) {
+            setCart(cart.filter(currentItem => currentItem.itemID !== item.itemID))
+        } else {
+            setCart(
+                cart.map(currentItem =>
+                    currentItem.itemID === exist.itemID ? { ...exist, quantity: exist.quantity - 1 } : currentItem
                 )
             )
-        } else {
-            setCartItems([...cartItems, { ...item, qty: 1 }])
-            //console.log(`Outside ${cartItems}`)
         }
-    };
+    }
 
     return (
         <>
-            <Cart onAdd={onAdd} cartItems={cartItems}></Cart>
+
+            <Cart addToCart={addToCart} removeFromCart={removeFromCart}></Cart>
             <h1 className="display-4 text-center mt-3">epamShop</h1>
             <section className="pi-4 container">
                 <div className="row justify-content-center block shadow">
@@ -49,7 +59,7 @@ const UserPage = () => {
                         myItems.map(item => {
                             return <ItemCard key={item.itemID}
                                 item={item}
-                                onAdd={onAdd} />
+                                addToCart={addToCart} />
                         })
                     }
                 </div>
