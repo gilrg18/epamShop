@@ -15,15 +15,17 @@
 ## To run:
 
 **Must have running mysql db on port 3306 with database schema called myitems and table called items**
-**CREATE TABLE `myitems`.`items` (**
-**`itemID` INT NOT NULL,**
-**`itemName` VARCHAR(60) NOT NULL,**
-**`itemDescription` VARCHAR(250) NOT NULL,**
-**`price` DECIMAL NOT NULL,**
-**PRIMARY KEY (`itemID`),**
-**UNIQUE INDEX `itemID_UNIQUE` (`itemID` ASC) VISIBLE);**
+
+CREATE TABLE `items` (
+  `itemID` int NOT NULL AUTO_INCREMENT,
+  `itemName` varchar(60) NOT NULL,
+  `itemDescription` varchar(250) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`itemID`),
+  UNIQUE KEY `itemID_UNIQUE` (`itemID`)
+)
   
-> npm start
 
 ## Tested with Postman:
 
