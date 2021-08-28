@@ -13,6 +13,8 @@
 * npm i --save-dev babel-cli babel-preset-es2015 babel-preset-stage-0
 
 ## To run:
+**Server will run on port 3000**
+* npm start
 
 **Must have running mysql db on port 3306 with database schema called myitems and table called items**
 
@@ -37,6 +39,7 @@ In postman: PUT request -> body -> raw ->
 "itemDescription": "Simple coffee mug",
 "price": "4.99"
 } 
+
 
 
 
