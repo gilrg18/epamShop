@@ -15,8 +15,7 @@ const ItemCard = (props) => {
                         <p className="card-text">${item.price}</p>
                         <button onClick={() => {
                             addToCart(item)
-                        }
-                        } type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
+                        } } type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
 
                     </div>
                 </div>

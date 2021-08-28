@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav} from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import AdminPage from './AdminPage'
 import Login from './Login'
@@ -22,6 +22,12 @@ const NavbarComponent = () => {
                             <Nav.Link as={Link} to={"/admin"}>Admin Page</Nav.Link>
 
                         </Nav>
+                        <Nav>
+                            <Nav.Link as={Link} to={"/"}>
+
+                            </Nav.Link>
+                        </Nav>
+
                     </Navbar.Collapse>
                 </Navbar>
             </div>

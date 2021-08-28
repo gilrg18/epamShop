@@ -17,6 +17,7 @@
 * npm start
 
 **Must have running mysql db on port 3306 with database schema called myitems and table called items**
+
 **Create Table items in mysql workbench**
 
 CREATE TABLE `items` (

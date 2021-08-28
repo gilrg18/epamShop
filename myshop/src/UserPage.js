@@ -49,12 +49,14 @@ const UserPage = () => {
     }
 
     return (
-        <>
+        <>  
 
-            <Cart addToCart={addToCart} removeFromCart={removeFromCart}></Cart>
+            
+            
             <h1 className="display-4 text-center mt-3">epamShop</h1>
-            <section className="pi-4 container">
+            <section className="pi container">
                 <div className="row justify-content-center block shadow">
+                <div className="  mb-4 right"><Cart addToCart={addToCart} removeFromCart={removeFromCart}></Cart></div>
                     {
                         myItems.map(item => {
                             return <ItemCard key={item.itemID}

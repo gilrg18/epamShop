@@ -13,7 +13,6 @@ code {
 }
 
 
-
 .block{
   background-color: rgba(73,194,210,255);
   padding:1rem;
@@ -23,4 +22,12 @@ code {
 
 .epamColor{
   background-color: rgba(73,194,210,255);
+}
+
+.right {
+  position: relative;
+  right: 0px;
+  width: 300px;
+  border: 3px solid #c5d34e;
+  padding: 10px;
 }
