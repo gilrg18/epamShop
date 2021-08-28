@@ -18,6 +18,7 @@
 
 **Must have running mysql db on port 3306 with database schema called myitems and table called items**
 **Create Table items in mysql workbench**
+
 CREATE TABLE `items` (
   `itemID` int NOT NULL AUTO_INCREMENT,
   `itemName` varchar(60) NOT NULL,
@@ -29,6 +30,7 @@ CREATE TABLE `items` (
 )
 
 **Insert data into items table**
+
 INSERT INTO `myitems`.`items` (`itemName`, `itemDescription`, `price`, `image`) VALUES ('Epam Shirt', 'Epam Essentials Unisex Short-Sleeve T-Shirt', '17.99', 'https://media.glassdoor.com/lst2x/8c/25/31/b8/summer-party.jpg'); 
 
 INSERT INTO `myitems`.`items` (`itemName`, `itemDescription`, `price`, `image`) VALUES ('Green Epam Shirt ', 'Help create awareness and keep Earth green with this awesome shirt!', '14.99', 'https://media.glassdoor.com/lst2x/f4/26/e6/1e/epamers-in-mexico-celebrate-earth-day.jpg'); 
