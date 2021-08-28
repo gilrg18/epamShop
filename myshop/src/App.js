@@ -7,23 +7,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Component } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 import Login from './Login';
+import NavbarComponent from './NavbarComponent';
 
 
 class App extends Component {
   render() {
     return (
       <>
-        <BrowserRouter>
-          <Switch>
-            <Route path='/' exact component={Login} />
-            <Route path='/confirmation' exact component={ConfirmationModal} />
-            <Route path='/user' exact component={UserPage} />
-            <Route path='/modal' exact component={AddModal} />
-            <Route path='/admin' exact component={AdminPage} />
-            <Route path='/cart' exact component={Cart} />
-            <Route path='/' render={() => <div>404 Not Found</div>} />
-          </Switch>
-        </BrowserRouter>
+      <NavbarComponent></NavbarComponent>
       </>
     );
   }
