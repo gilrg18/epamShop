@@ -24,6 +24,10 @@ const AddModal = (props) => {
                 Toasts.error("Price must be a number")
                 throw new Error("Price must be a number");
             }
+            if(newPrice>10000){
+                Toasts.error("Maximum price 10,000 exceeded")
+                throw new Error("Maximum price 10,000 exceeded");
+            }
             await fetch(`/myItems/items/`, {
                 method: 'POST',
                 headers: {
