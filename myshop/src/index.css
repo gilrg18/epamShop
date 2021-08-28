@@ -22,12 +22,7 @@ code {
 
 .epamColor{
   background-color: rgba(73,194,210,255);
+  border: 3px solid #c5d34e;
 }
 
-.right {
-  position: relative;
-  right: 0px;
-  width: 300px;
-  border: 3px solid #c5d34e;
-  padding: 10px;
-}
+

@@ -17,9 +17,10 @@ const Cart = (props) => {
                     </Accordion.Header>
                     <Accordion.Body>
                         <div>{cart.length === 0 && <div>{ }Empty Cart</div>}</div>
+
                         {cart.map((item) => {
                             return (
-                                <div key={item.itemID}>
+                                <div className="" key={item.itemID}>
                                     <div>{item.itemName}</div>
                                     <div>
                                         <button onClick={() => {
@@ -34,7 +35,7 @@ const Cart = (props) => {
                             )
                         })}
                         {cart.length !== 0 && (
-                            <>
+                            <div className="">
                                 <hr></hr>
                                 <div>
                                     <div> Items Price </div>
@@ -48,7 +49,7 @@ const Cart = (props) => {
                                     <strong> Total Price </strong>
                                     <div> ${totalPrice.toFixed(2)}</div>
                                 </div>
-                            </>
+                            </div>
                         )}
                     </Accordion.Body>
                 </Accordion.Item>
@@ -59,3 +60,4 @@ const Cart = (props) => {
 }
 
 export default Cart;
+
