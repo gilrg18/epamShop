@@ -72,7 +72,7 @@ export const updateItem = (req, res) => {
 export const deleteItem = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
-    "DELETE FROM myitems..items WHERE myitems.itemID = ?;",
+    "DELETE FROM myitems.items WHERE itemID = ?;",
     [theItemID],
     (err, rows) => {
       if (err) throw err;
