@@ -1,6 +1,6 @@
 import React from 'react'
 import Api from './Api';
-import UpdateModal from './UpdateModal'
+import UpdateModal from './modalComponents/UpdateModal'
 
 
 const ItemList = (props) => {

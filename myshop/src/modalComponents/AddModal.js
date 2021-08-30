@@ -1,19 +1,19 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
-import Toasts from './toasts/Toasts'
-import Api from './Api';
+import Toasts from '../toasts/Toasts'
+import Api from '../Api';
 
-const UpdateModal = (props) => {
+const AddModal = (props) => {
 
     const [item, setItem] = React.useState({
+        itemID: "",
         itemName: "",
         itemDescription: "",
         price: ""
     })
 
-    const updateItem = async (itemID) => {
-
-
+    const addItem = async (newKey) => {
+        item.itemID = newKey;
         try {
             if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
                 Toasts.error("Items must not have empty values")
@@ -21,38 +21,42 @@ const UpdateModal = (props) => {
             }
             let newPrice = Number(parseFloat(item.price).toFixed(2))
             if (isNaN(newPrice) || typeof newPrice !== 'number') {
-                Toasts.error("Price must be a number");
+                Toasts.error("Price must be a number")
                 throw new Error("Price must be a number");
             }
             if(newPrice>10000){
                 Toasts.error("Maximum price 10,000 exceeded")
                 throw new Error("Maximum price 10,000 exceeded");
             }
-            await fetch(`/myItems/items/${itemID}`, {
-                method: 'PUT',
+            await fetch(`/myItems/items/`, {
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json',
                 },
                 body: JSON.stringify({
+                    itemID: item.itemID,
                     itemName: item.itemName,
                     itemDescription: item.itemDescription,
                     price: newPrice
                 })
             })
+            //setItems([...myItems, item])
             const items = await Api.getItems();
-            props.setItems(items)
-            Toasts.sucess(`Item ${item.itemName} has been updated`)
+            props.setItems(items);
+            Toasts.sucess(`Item ${item.itemName} has been added`)
         } catch (error) {
             console.log(`error: ${error}`)
         }
 
         handleClose();
 
-
-
     }
 
+    const getNewKey = () => {
+        const myKey = props.myItems[props.myItems.length - 1].itemID + 1
+        return myKey;
+    }
 
     const handleItemValues = (e) => {
         const newItem = { ...item }
@@ -69,13 +73,12 @@ const UpdateModal = (props) => {
 
     return (
         <>
-            <Button variant="primary rounded-pill" onClick={handleShow}>
-                Update
+            <Button variant="success rounded-pill" onClick={handleShow}>
+                Add Item
             </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="display-6">Update</Modal.Title>
+                    <Modal.Title className="display-6">Add Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <InputGroup size="sm" className="mb-3">
@@ -88,7 +91,7 @@ const UpdateModal = (props) => {
                             onChange={(event) => handleItemValues(event)} id="itemDescription" value={item.itemDescription} placeholder="Item Description" type="text"
                         />
                     </InputGroup>
-                    <InputGroup size="sm" className="mb-3">
+                    <InputGroup size="sm" className="rounded-pill mb-3">
                         <InputGroup.Text id="inputGroup-sizing-default">Item Price</InputGroup.Text><FormControl
                             onChange={(event) => handleItemValues(event)} id="price" value={item.price} placeholder="Item Price" type="text"
                         />
@@ -99,8 +102,8 @@ const UpdateModal = (props) => {
                     <Button variant="secondary rounded-pill" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary rounded-pill" onClick={() => updateItem(props.itemID)}>
-                        Update Item
+                    <Button variant="success rounded-pill" onClick={() => addItem(getNewKey())}>
+                        Add Item
 
                     </Button>
 
@@ -111,4 +114,4 @@ const UpdateModal = (props) => {
 
 }
 
-export default UpdateModal;
+export default AddModal;

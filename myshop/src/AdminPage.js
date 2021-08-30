@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemList from './ItemList';
-import AddModal from './AddModal';
+import AddModal from './modalComponents/AddModal';
 import { Table } from 'react-bootstrap'
 import Api from './Api'
 

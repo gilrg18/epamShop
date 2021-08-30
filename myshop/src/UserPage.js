@@ -14,7 +14,6 @@ const UserPage = () => {
     React.useEffect(() => {
         const fetchItems = async () => {
             const items = await Api.getItems();
-            console.log(items)
             setItems(items);
         }
         fetchItems();
