@@ -1,4 +1,4 @@
-//import { runInNewContext } from "vm";
+
 import {
     getItems,
     getItemsWithID,
@@ -8,16 +8,14 @@ import {
 } from '../controllers/sController';
 
 
-//routes to define endpoints in your application
+//routes to define endpoints
 const routes = (app) => {
 
 
     app.route('/myItems/items')
         .get((req, res, next) => {
-            //middleware (express functions that have access to the resquest and respone objects and act on them)
             console.log(`Request from: ${req.originalUrl}`)
             console.log(`Request type: ${req.method}`)
-            //next() gets out of the middleware and allows use to get to the next function
             next();
         }, getItems)
 

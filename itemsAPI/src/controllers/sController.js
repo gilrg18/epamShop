@@ -4,6 +4,7 @@ export const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
+  //use your own password
   password: "kokoloko",
   database: "myitems"
 });
@@ -25,7 +26,6 @@ export const getItems = (req, res) => {
   });
 };
 
-//QUERY RETURNS EMPTY INSTEAD OF ERROR WHEN SELECTING NON EXISTING ITEM
 export const getItemsWithID = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
@@ -49,20 +49,15 @@ export const createItem = (req, res) => {
     "INSERT INTO items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
     [newID, newName, newDescription, newPrice],
     (err, rows, field) => {
-      // try {
       if (err) throw err;
       console.log(`Succesfully added item, ${newName}`);
       res.json(rows);
-      // } catch (err) {
-      //   console.log('Error: ', err);
-      // }
     }
   );
 
 };
 
 
-////QUERY RETURNS SUCCESFUL INSTEAD OF ERROR WHEN SELECTING NON EXISTING ITEM
 export const updateItem = (req, res) => {
   const idToUpdate = req.params.itemID,
     newName = req.body.itemName,
@@ -81,7 +76,6 @@ export const updateItem = (req, res) => {
 };
 
 
-////QUERY RETURNS SUCCESFUL INSTEAD OF ERROR WHEN SELECTING NON EXISTING ITEM
 export const deleteItem = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
