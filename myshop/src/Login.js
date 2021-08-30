@@ -1,7 +1,28 @@
 import React from 'react';
 import './Login.css';
+import Toasts from './toasts/Toasts';
+import Axios from "axios";
+const Login = (props) => {
+    const { setLoggedIn } = props;
+    const [username, setUsername] = React.useState('')
+    const [password, setPassword] = React.useState('')
 
-const Login = () => {
+
+
+    const login = () => {
+        Axios.post('/login', {
+            userID: username,
+            password: password,
+        }).then((response) => {
+            if (response.data.message) {
+                Toasts.error(response.data.message)
+            } else {
+                setLoggedIn(response.data[0].accountType)
+            }
+        })
+    }
+
+
 
     return (
 
@@ -15,15 +36,24 @@ const Login = () => {
                                 <div className="row">
                                     <div className="col-lg-10 col-xl-7 mx-auto">
                                         <h3 align="center" className="display-4">epamShop</h3>
-                                        <form>
-                                            <div className="form-group mb-3">
-                                                <input id="inputEmail" type="email" placeholder="User" required="" autoFocus="" className="form-control rounded-pill border-0 shadow-sm px-4" />
-                                            </div>
-                                            <div className="form-group mb-3">
-                                                <input id="inputPassword" type="password" placeholder="Password" required="" className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
-                                            </div>
-                                            <button type="submit" className="btn btn-primary btn-block rounded-pill shadow">Sign in</button>
-                                        </form>
+
+                                        <div className="form-group mb-3">
+                                            <input id="inputEmail" type="user" placeholder="User"
+                                                required="" autoFocus=""
+                                                onChange={(e) => {
+                                                    setUsername(e.target.value)
+                                                }} className="form-control rounded-pill border-0 shadow-sm px-4" />
+                                        </div>
+                                        <div className="form-group mb-3">
+                                            <input id="inputPassword" type="password" placeholder="Password" required=""
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value)
+                                                }} className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                        </div>
+
+                                        <button
+                                            onClick={login} id="signIn" className="btn btn-primary btn-block rounded-pill shadow">Sign in</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -35,4 +65,6 @@ const Login = () => {
 
     )
 };
+
+
 export default Login;

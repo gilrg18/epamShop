@@ -1,16 +1,15 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import AdminPage from './AdminPage'
 import Login from './Login'
 import UserPage from './UserPage'
 import { CartProvider } from './CartContext'
 
-const NavbarComponent = () => {
+const UserNavbarComponent = () => {
 
     return (
         <CartProvider>
-            <Router>
+        <Router>
                 <div>
                     <Navbar bg="dark" variant={"dark"} expand="lg">
                         <Navbar.Brand href="/">epamShop</Navbar.Brand>
@@ -22,19 +21,17 @@ const NavbarComponent = () => {
                                 navbarScroll
                             >
                                 <Nav.Link as={Link} to={"/user"}>Shop</Nav.Link>
-                                <Nav.Link as={Link} to={"/admin"}>Admin Page</Nav.Link>
+                                
 
                             </Nav>
-
 
                         </Navbar.Collapse>
                     </Navbar>
                 </div>
                 <div>
                     <Switch>
-                        <Route path='/' exact component={AdminPage} />
+                        <Route path='/' exact component={UserPage} />
                         <Route path='/user' exact component={UserPage} />
-                        <Route path='/admin' exact component={AdminPage} />
                         <Route path='/login' exact component={Login} />
                         <Route path='/' render={() =>
                             <div class="page-wrap d-flex flex-row align-items-center">
@@ -56,4 +53,4 @@ const NavbarComponent = () => {
     )
 }
 
-export default NavbarComponent;
+export default UserNavbarComponent;

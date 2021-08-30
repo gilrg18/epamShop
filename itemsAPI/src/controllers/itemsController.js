@@ -1,13 +1,4 @@
-const mysql = require("mysql2");
-
-export const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  //use your own password
-  password: "kokoloko",
-  database: "myitems"
-});
+import connection from '../connection/dbConnection';
 
 connection.connect(err => {
   if (err) throw err;
@@ -31,7 +22,7 @@ export const getItemsWithID = (req, res) => {
   connection.query(
     "SELECT itemID, itemName, itemDescription, price FROM myitems.items WHERE itemID = ?;",
     [theItemID],
-    (err, rows, field) => {
+    (err, rows) => {
       if (err) throw err;
       console.log("Succesfully fetched item with id:", theItemID);
       res.json(rows);
@@ -48,7 +39,7 @@ export const createItem = (req, res) => {
   connection.query(
     "INSERT INTO items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
     [newID, newName, newDescription, newPrice],
-    (err, rows, field) => {
+    (err, rows) => {
       if (err) throw err;
       console.log(`Succesfully added item, ${newName}`);
       res.json(rows);
@@ -67,7 +58,7 @@ export const updateItem = (req, res) => {
   connection.query(
     "UPDATE items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
     [newName, newDescription, price, idToUpdate],
-    (err, rows, field) => {
+    (err, rows) => {
       if (err) throw err;
       console.log("Succesfully updated item", idToUpdate);
       res.json(rows);
@@ -81,7 +72,7 @@ export const deleteItem = (req, res) => {
   connection.query(
     "DELETE FROM items WHERE itemID = ?;",
     [theItemID],
-    (err, rows, field) => {
+    (err, rows) => {
       if (err) throw err;
       console.log("Succesfully deleted item with id:", theItemID);
       res.json(rows);

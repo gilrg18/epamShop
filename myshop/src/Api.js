@@ -16,12 +16,12 @@ class Api {
     };
 
     deleteItem = async (itemID) => {
-        if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
-            await fetch(`/myItems/items/${itemID}`, {
-                method: 'DELETE'
-            });
-            Toasts.sucess(`Item with id ${itemID} has been deleted`)
-        }
+        //  if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
+        await fetch(`/myItems/items/${itemID}`, {
+            method: 'DELETE'
+        });
+        Toasts.sucess(`Item with id ${itemID} has been deleted`)
+        //}
     };
 
 }

@@ -1,18 +1,21 @@
 import './App.css';
-import { Component } from 'react';
+import React from 'react';
 import NavbarComponent from './NavbarComponent';
-import {CartProvider} from './CartContext'
+import UserNavbarComponent from './UserNavbarComponent';
+import Login from './Login'
 
-class App extends Component {
-  render() {
-    return (
-      <>
-      <CartProvider>
-      <NavbarComponent></NavbarComponent>
-      </CartProvider>
-      </>
-    );
-  }
+
+const App = () => {
+  const [loggedIn, setLoggedIn] = React.useState('')
+  return (
+    <>
+      {loggedIn === '' && <Login setLoggedIn={setLoggedIn}></Login>}
+      {loggedIn === 'ADMIN' && <NavbarComponent></NavbarComponent>}
+      {loggedIn === 'USER' && <UserNavbarComponent></UserNavbarComponent>}
+
+    </>
+  );
+
 }
 
 export default App;

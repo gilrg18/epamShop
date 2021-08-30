@@ -1,6 +1,6 @@
 import React from 'react'
 import { CartContext } from './CartContext'
-import { Badge, Accordion } from 'react-bootstrap'
+import { Badge, Accordion, Button } from 'react-bootstrap'
 const Cart = (props) => {
     const { addToCart, removeFromCart } = props;
     const [cart] = React.useContext(CartContext);
@@ -15,28 +15,31 @@ const Cart = (props) => {
                     <Accordion.Header>
                         Cart    {totalItems ? (<Badge pill bg="danger">{totalItems}</Badge>) : (' ')}
                     </Accordion.Header>
-                    <Accordion.Body>
+                    <Accordion.Body >
                         <div>{cart.length === 0 && <div>{ }Empty Cart</div>}</div>
 
                         {cart.map((item) => {
                             return (
-                                <div className="" key={item.itemID}>
+                                <div className=" mb-4 center" key={item.itemID}>
                                     <div>{item.itemName}</div>
                                     <div>
-                                        <button onClick={() => {
+                                        <Button variant="primary rounded-pill " onClick={() => {
                                             addToCart(item);
-                                        }}> + </button>
-                                        <button onClick={() => {
+                                        }}> + </Button>
+                                        {' '}
+                                        <Button variant="primary rounded-pill" onClick={() => {
                                             removeFromCart(item);
-                                        }}> - </button>
+                                        }}> - </Button>
                                     </div>
                                     <div>{item.quantity} x ${item.price}</div>
                                 </div>
+                                
                             )
                         })}
+                        <hr></hr>
                         {cart.length !== 0 && (
-                            <div className="">
-                                <hr></hr>
+                            <div className="center">
+                                
                                 <div>
                                     <div> Items Price </div>
                                     <div> ${itemsPrice.toFixed(2)}</div>
