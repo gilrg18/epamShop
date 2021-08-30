@@ -5,8 +5,9 @@ import {
     createItem,
     updateItem,
     deleteItem
-} from '../controllers/itemsController';
+} from '../controllers/itemsController.js';
 
+//const { getItems, getItemsWithID, createItem, updateItem, deleteItem } = require('../controllers/itemsController')
 
 //routes to define endpoints
 const routes = (app) => {

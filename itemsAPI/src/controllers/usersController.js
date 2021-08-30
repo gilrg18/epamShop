@@ -1,4 +1,4 @@
-import connection from '../connection/dbConnection'
+import connection from '../connection/dbConnection.js'
 
 connection.connect(err => {
     if (err) throw err;

@@ -1,5 +1,5 @@
-import { login, registerUser } from '../controllers/usersController';
-
+import { login, registerUser } from '../controllers/usersController.js';
+//const { login, registerUser } = require('../controllers/usersController')
 const userRoutes = (app) => {
 
     app.route('/registerUser')

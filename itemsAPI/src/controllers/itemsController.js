@@ -1,4 +1,6 @@
-import connection from '../connection/dbConnection';
+import connection from '../connection/dbConnection.js';
+
+//const connection = require('../connection/dbConnection')
 
 connection.connect(err => {
   if (err) throw err;
@@ -37,7 +39,7 @@ export const createItem = (req, res) => {
     newDescription = req.body.itemDescription,
     newPrice = req.body.price;
   connection.query(
-    "INSERT INTO items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
+    "INSERT INTO myitems.items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
     [newID, newName, newDescription, newPrice],
     (err, rows) => {
       if (err) throw err;
@@ -56,7 +58,7 @@ export const updateItem = (req, res) => {
     price = req.body.price;
 
   connection.query(
-    "UPDATE items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
+    "UPDATE myitems.items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
     [newName, newDescription, price, idToUpdate],
     (err, rows) => {
       if (err) throw err;
@@ -70,7 +72,7 @@ export const updateItem = (req, res) => {
 export const deleteItem = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
-    "DELETE FROM items WHERE itemID = ?;",
+    "DELETE FROM myitems..items WHERE myitems.itemID = ?;",
     [theItemID],
     (err, rows) => {
       if (err) throw err;
@@ -79,3 +81,5 @@ export const deleteItem = (req, res) => {
     }
   );
 };
+
+//deploydb: heroku_a98b46e7617b377
