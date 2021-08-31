@@ -16,7 +16,7 @@ class Api {
     };
 
 
-
+    
     deleteItem = async (itemID) => {
         await fetch(`/myItems/items/${itemID}`, {
             method: 'DELETE'
@@ -117,7 +117,7 @@ class Api {
     }
 
 
-    
+
 }
 
 export default new Api();
