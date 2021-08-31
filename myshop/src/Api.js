@@ -15,13 +15,13 @@ class Api {
 
     };
 
+
+
     deleteItem = async (itemID) => {
-        //  if (window.confirm(`Deleting item with id ${itemID}, are you sure?`)) {
         await fetch(`/myItems/items/${itemID}`, {
             method: 'DELETE'
         });
         Toasts.sucess(`Item with id ${itemID} has been deleted`)
-        //}
     };
 
     // login = (username, password, setLoggedIn) => {
@@ -37,6 +37,8 @@ class Api {
     //     })
     // }
 
+
+
     addItem = async (item, newKey, props, handleClose) => {
         item.itemID = newKey;
         try {
@@ -49,7 +51,7 @@ class Api {
                 Toasts.error("Price must be a number")
                 throw new Error("Price must be a number");
             }
-            if(newPrice>10000){
+            if (newPrice > 10000) {
                 Toasts.error("Maximum price 10,000 exceeded")
                 throw new Error("Maximum price 10,000 exceeded");
             }
@@ -73,11 +75,49 @@ class Api {
         } catch (error) {
             console.log(`error: ${error}`)
         }
-
         handleClose();
-
     }
 
+
+
+    updateItem = async (item, props, handleClose) => {
+        try {
+            if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
+                Toasts.error("Items must not have empty values")
+                throw new Error("Items must not have empty values")
+            }
+            let newPrice = Number(parseFloat(item.price).toFixed(2))
+            if (isNaN(newPrice) || typeof newPrice !== 'number') {
+                Toasts.error("Price must be a number");
+                throw new Error("Price must be a number");
+            }
+            if (newPrice > 10000) {
+                Toasts.error("Maximum price 10,000 exceeded")
+                throw new Error("Maximum price 10,000 exceeded");
+            }
+            await fetch(`/myItems/items/${props.itemID}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    itemName: item.itemName,
+                    itemDescription: item.itemDescription,
+                    price: newPrice
+                })
+            })
+            const items = await this.getItems();
+            props.setItems(items)
+            Toasts.sucess(`Item ${item.itemName} has been updated`)
+        } catch (error) {
+            console.log(`error: ${error}`)
+        }
+        handleClose();
+    }
+
+
+    
 }
 
 export default new Api();

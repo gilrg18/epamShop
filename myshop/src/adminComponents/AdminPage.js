@@ -3,6 +3,7 @@ import ItemList from './ItemList';
 import AddModal from '../modalComponents/AddModal';
 import { Table } from 'react-bootstrap'
 import Api from '../Api'
+import '../css/index.css'
 
 const AdminPage = () => {
 
@@ -21,17 +22,17 @@ const AdminPage = () => {
     return (
         <>
             <h1 className="display-4 text-center mt-3">epamShop Admin</h1>
-            <Table className= "container shadow" bordered hover>
+            <Table className="container shadow" bordered hover>
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>Item</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
+                        <th>Action <AddModal myItems={myItems} setItems={setItems} /></th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     {
                         myItems.map(item => {
@@ -45,8 +46,7 @@ const AdminPage = () => {
                         })
                     }
                 </tbody>
-            </Table>
-            &nbsp;&nbsp;
+            </Table>          
         </>
     );
 }

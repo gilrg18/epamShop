@@ -20,7 +20,7 @@ const ItemList = (props) => {
                 <td>
                     <UpdateModal setItems={props.setItems} itemID={itemID} />
                     
-                    <button type="button" className="deleteButton btn btn-danger rounded-pill" onClick={() => {
+                    <button type="button" className="space btn btn-danger rounded-pill" onClick={() => {
                         Api.deleteItem(itemID)
                         fetchItems()
                     }
