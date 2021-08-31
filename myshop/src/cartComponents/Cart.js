@@ -11,8 +11,8 @@ const Cart = (props) => {
     const totalItems = cart.reduce((accumulator, currentItem) => accumulator + currentItem.quantity, 0);
 
     return (
-        <>
-            <Accordion defaultActiveKey="0">
+
+         <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>
                         Cart    {totalItems ? (<Badge pill bg="danger">{totalItems}</Badge>) : (' ')}
@@ -59,9 +59,9 @@ const Cart = (props) => {
                         )}
                     </Accordion.Body>
                 </Accordion.Item>
-            </Accordion>
+            </Accordion>                     
 
-        </>
+
     );
 }
 

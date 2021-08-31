@@ -22,21 +22,7 @@ class Api {
         Toasts.sucess(`Item with id ${itemID} has been deleted`)
     };
 
-
-    // login = (username, password, setLoggedIn) => {
-    //     Axios.post('/login', {
-    //         userID: username,
-    //         password: password,
-    //     }).then((response) => {
-    //         if (response.data.message) {
-    //             Toasts.error(response.data.message)
-    //         } else {
-    //             setLoggedIn(response.data[0].accountType)
-    //         }
-    //     })
-    // }
-
-
+    
     addItem = async (item, newKey, props, handleClose) => {
         item.itemID = newKey;
         try {

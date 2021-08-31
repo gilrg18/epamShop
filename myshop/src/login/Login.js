@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/Login.css';
 import Toasts from '../toasts/Toasts';
 import Axios from "axios";
-
 const Login = (props) => {
     const { setLoggedIn } = props;
     const [username, setUsername] = React.useState('')
