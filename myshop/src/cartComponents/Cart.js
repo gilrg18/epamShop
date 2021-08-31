@@ -3,11 +3,14 @@ import { CartContext } from './CartContext'
 import { Badge, Accordion, Button } from 'react-bootstrap'
 const Cart = (props) => {
     const { addToCart, removeFromCart } = props;
-    const [cart] = React.useContext(CartContext);
+    const [cart, setCart] = React.useContext(CartContext);
+
+
     const itemsPrice = cart.reduce((accumulator, currentItem) => accumulator + Number(currentItem.price) * currentItem.quantity, 0);
     const shippingPrice = itemsPrice > 50 ? 0 : 10;
     const totalPrice = itemsPrice + shippingPrice;
     const totalItems = cart.reduce((accumulator, currentItem) => accumulator + currentItem.quantity, 0);
+
     return (
         <>
             <Accordion defaultActiveKey="0">
@@ -22,13 +25,14 @@ const Cart = (props) => {
                             return (
                                 <div className=" mb-4 center" key={item.itemID}>
                                     <div>{item.itemName}</div>
+                                    <img className="img" src={item.image} alt="img"></img>
                                     <div>
                                         <Button variant="primary rounded-pill " onClick={() => {
-                                            addToCart(item);
+                                            addToCart(item, cart, setCart);
                                         }}> + </Button>
                                         {' '}
                                         <Button variant="primary rounded-pill" onClick={() => {
-                                            removeFromCart(item);
+                                            removeFromCart(item, cart, setCart);
                                         }}> - </Button>
                                     </div>
                                     <div>{item.quantity} x ${item.price}</div>

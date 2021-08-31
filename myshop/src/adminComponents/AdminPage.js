@@ -1,8 +1,8 @@
 import React from 'react'
 import ItemList from './ItemList';
-import AddModal from './modalComponents/AddModal';
+import AddModal from '../modalComponents/AddModal';
 import { Table } from 'react-bootstrap'
-import Api from './Api'
+import Api from '../Api'
 
 const AdminPage = () => {
 
@@ -21,15 +21,14 @@ const AdminPage = () => {
     return (
         <>
             <h1 className="display-4 text-center mt-3">epamShop Admin</h1>
-            <Table bordered hover>
+            <Table className= "container shadow" bordered hover>
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Item Name</th>
+                        <th>Item</th>
                         <th>Description</th>
                         <th>Price</th>
                         <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +38,7 @@ const AdminPage = () => {
                                 itemID={item.itemID}
                                 itemName={item.itemName}
                                 itemDescription={item.itemDescription}
+                                itemImage={item.image}
                                 price={item.price}
                                 setItems={setItems} />
                         })
@@ -46,9 +46,7 @@ const AdminPage = () => {
                 </tbody>
             </Table>
             &nbsp;&nbsp;
-
         </>
-
     );
 }
 

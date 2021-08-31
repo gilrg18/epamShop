@@ -1,8 +1,10 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
+import { CartContext } from '../cartComponents/CartContext';
 
 const ItemCard = (props) => {
     const { item, addToCart } = props;
+    const [cart, setCart] = React.useContext(CartContext)
 
     return (
         <>
@@ -14,7 +16,7 @@ const ItemCard = (props) => {
                         <p className="card-text">{item.itemDescription}</p>
                         <p className="card-text">${item.price}</p>
                         <button onClick={() => {
-                            addToCart(item)
+                            addToCart(item, cart, setCart)
                         } } type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
 
                     </div>

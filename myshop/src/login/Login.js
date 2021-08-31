@@ -1,12 +1,11 @@
 import React from 'react';
-import './Login.css';
-import Toasts from './toasts/Toasts';
+import '../css/Login.css';
+import Toasts from '../toasts/Toasts';
 import Axios from "axios";
 const Login = (props) => {
     const { setLoggedIn } = props;
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
-
 
 
     const login = () => {
@@ -50,10 +49,8 @@ const Login = (props) => {
                                                     setPassword(e.target.value)
                                                 }} className="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                         </div>
-
-                                        <button
-                                            onClick={login} id="signIn" className="btn btn-primary btn-block rounded-pill shadow">Sign in</button>
-
+                                        <button onClick={login} id="signIn"
+                                            className="btn btn-primary btn-block rounded-pill shadow">Sign in</button>
                                     </div>
                                 </div>
                             </div>
