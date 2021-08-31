@@ -2,9 +2,8 @@ import React from 'react'
 import { CartContext } from './CartContext'
 import { Badge, Accordion, Button } from 'react-bootstrap'
 const Cart = (props) => {
-    const { addToCart, removeFromCart } = props;
     const [cart, setCart] = React.useContext(CartContext);
-
+    const { addToCart, removeFromCart } = props;
 
     const itemsPrice = cart.reduce((accumulator, currentItem) => accumulator + Number(currentItem.price) * currentItem.quantity, 0);
     const shippingPrice = itemsPrice > 50 ? 0 : 10;
@@ -37,13 +36,13 @@ const Cart = (props) => {
                                     </div>
                                     <div>{item.quantity} x ${item.price}</div>
                                 </div>
-                                
+
                             )
                         })}
                         <hr></hr>
                         {cart.length !== 0 && (
                             <div className="center">
-                                
+
                                 <div>
                                     <div> Items Price </div>
                                     <div> ${itemsPrice.toFixed(2)}</div>

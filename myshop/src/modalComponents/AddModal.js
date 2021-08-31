@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Toasts from '../toasts/Toasts'
 import Api from '../Api';
 
+
 const AddModal = (props) => {
 
     const [item, setItem] = React.useState({
@@ -12,46 +13,46 @@ const AddModal = (props) => {
         price: ""
     })
 
-    const addItem = async (newKey) => {
-        item.itemID = newKey;
-        try {
-            if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
-                Toasts.error("Items must not have empty values")
-                throw new Error("Items must not have empty values")
-            }
-            let newPrice = Number(parseFloat(item.price).toFixed(2))
-            if (isNaN(newPrice) || typeof newPrice !== 'number') {
-                Toasts.error("Price must be a number")
-                throw new Error("Price must be a number");
-            }
-            if(newPrice>10000){
-                Toasts.error("Maximum price 10,000 exceeded")
-                throw new Error("Maximum price 10,000 exceeded");
-            }
-            await fetch(`/myItems/items/`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    itemID: item.itemID,
-                    itemName: item.itemName,
-                    itemDescription: item.itemDescription,
-                    price: newPrice
-                })
-            })
-            //setItems([...myItems, item])
-            const items = await Api.getItems();
-            props.setItems(items);
-            Toasts.sucess(`Item ${item.itemName} has been added`)
-        } catch (error) {
-            console.log(`error: ${error}`)
-        }
+    // const addItem = async (newKey) => {
+    //     item.itemID = newKey;
+    //     try {
+    //         if (item.itemName === "" || item.itemDescription === "" || item.price === "") {
+    //             Toasts.error("Items must not have empty values")
+    //             throw new Error("Items must not have empty values")
+    //         }
+    //         let newPrice = Number(parseFloat(item.price).toFixed(2))
+    //         if (isNaN(newPrice) || typeof newPrice !== 'number') {
+    //             Toasts.error("Price must be a number")
+    //             throw new Error("Price must be a number");
+    //         }
+    //         if(newPrice>10000){
+    //             Toasts.error("Maximum price 10,000 exceeded")
+    //             throw new Error("Maximum price 10,000 exceeded");
+    //         }
+    //         await fetch(`/myItems/items/`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 itemID: item.itemID,
+    //                 itemName: item.itemName,
+    //                 itemDescription: item.itemDescription,
+    //                 price: newPrice
+    //             })
+    //         })
+    //         //setItems([...myItems, item])
+    //         const items = await Api.getItems();
+    //         props.setItems(items);
+    //         Toasts.sucess(`Item ${item.itemName} has been added`)
+    //     } catch (error) {
+    //         console.log(`error: ${error}`)
+    //     }
 
-        handleClose();
+    //     handleClose();
 
-    }
+    // }
 
     const getNewKey = () => {
         const myKey = props.myItems[props.myItems.length - 1].itemID + 1
@@ -102,7 +103,7 @@ const AddModal = (props) => {
                     <Button variant="secondary rounded-pill" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="success rounded-pill" onClick={() => addItem(getNewKey())}>
+                    <Button variant="success rounded-pill" onClick={() => Api.addItem(item, getNewKey(), props, handleClose)}>
                         Add Item
 
                     </Button>

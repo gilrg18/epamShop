@@ -31,6 +31,7 @@ const AdminPage = () => {
                         <th>Action &nbsp;&nbsp;<AddModal myItems={myItems} setItems={setItems} /></th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     {
                         myItems.map(item => {

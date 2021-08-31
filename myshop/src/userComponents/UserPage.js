@@ -6,8 +6,6 @@ import { CartContext } from '../cartComponents/CartContext';
 import CartController from '../cartComponents/CartController'
 
 const UserPage = () => {
-
-    //Consume itemsAPI with useEffect
     const [myItems, setItems] = React.useState([]);
     const [cart, setCart] = React.useContext(CartContext)
 
@@ -19,34 +17,6 @@ const UserPage = () => {
         }
         fetchItems();
     }, [])
-
-
-    // const addToCart = (item) => {
-    //     const itemToAdd = { itemID: item.itemID, itemName: item.itemName, price: item.price }
-    //     const exist = cart.find(cartItem => cartItem.itemID === itemToAdd.itemID)
-    //     if (exist) {
-    //         setCart(
-    //             cart.map(currentItem =>
-    //                 currentItem.itemID === exist.itemID ? { ...exist, quantity: exist.quantity + 1 } : currentItem
-    //             )
-    //         );
-    //     } else {
-    //         setCart(currentState => [...currentState, { ...itemToAdd, quantity: 1 }]);
-    //     }
-    // }
-
-    // const removeFromCart = (item) => {
-    //     const exist = cart.find(cartItem => cartItem.itemID === item.itemID)
-    //     if (exist.quantity === 1) {
-    //         setCart(cart.filter(currentItem => currentItem.itemID !== item.itemID))
-    //     } else {
-    //         setCart(
-    //             cart.map(currentItem =>
-    //                 currentItem.itemID === exist.itemID ? { ...exist, quantity: exist.quantity - 1 } : currentItem
-    //             )
-    //         )
-    //     }
-    // }
 
     return(
         <>
