@@ -1,6 +1,5 @@
-
 import Toasts from './toasts/Toasts'
-// import Axios from 'axios';
+
 class Api {
 
     getItems = async () => {
@@ -16,13 +15,13 @@ class Api {
     };
 
 
-    
     deleteItem = async (itemID) => {
         await fetch(`/myItems/items/${itemID}`, {
             method: 'DELETE'
         });
         Toasts.sucess(`Item with id ${itemID} has been deleted`)
     };
+
 
     // login = (username, password, setLoggedIn) => {
     //     Axios.post('/login', {
@@ -36,7 +35,6 @@ class Api {
     //         }
     //     })
     // }
-
 
 
     addItem = async (item, newKey, props, handleClose) => {
@@ -68,7 +66,6 @@ class Api {
                     price: newPrice
                 })
             })
-            //setItems([...myItems, item])
             const items = await this.getItems();
             props.setItems(items);
             Toasts.sucess(`Item ${item.itemName} has been added`)
@@ -77,7 +74,6 @@ class Api {
         }
         handleClose();
     }
-
 
 
     updateItem = async (item, props, handleClose) => {
@@ -115,7 +111,6 @@ class Api {
         }
         handleClose();
     }
-
 
 
 }
