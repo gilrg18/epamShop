@@ -1,10 +1,12 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { CartProvider } from '../cartComponents/CartContext'
+import { FiShoppingCart } from 'react-icons/fi'
 import AdminPage from './AdminPage'
 import Login from '../login/Login'
 import UserPage from '../userComponents/UserPage'
-import { CartProvider } from '../cartComponents/CartContext'
+import CartComponent from '../cartComponents/CartComponent'
 
 const NavbarComponent = () => {
 
@@ -25,8 +27,10 @@ const NavbarComponent = () => {
                                 <Nav.Link as={Link} to={"/admin"}>Admin Page</Nav.Link>
 
                             </Nav>
-
-
+                            <Nav>
+                                <Nav></Nav>
+                                <Nav.Link as={Link} to={"/cart"}><FiShoppingCart />  Cart</Nav.Link>
+                            </Nav>
                         </Navbar.Collapse>
                     </Navbar>
                 </div>
@@ -36,6 +40,7 @@ const NavbarComponent = () => {
                         <Route path='/user' exact component={UserPage} />
                         <Route path='/admin' exact component={AdminPage} />
                         <Route path='/login' exact component={Login} />
+                        <Route path='/cart' exact component={CartComponent} />
                         <Route path='/' render={() =>
                             <div className="page-wrap d-flex flex-row align-items-center">
                                 <div className="container">

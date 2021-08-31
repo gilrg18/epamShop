@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'react-bootstrap';
 import { CartContext } from '../cartComponents/CartContext';
+import Toasts from '../toasts/Toasts';
 
 const ItemCard = (props) => {
     const { item, addToCart } = props;
@@ -17,6 +18,7 @@ const ItemCard = (props) => {
                         <p className="card-text">${item.price}</p>
                         <button onClick={() => {
                             addToCart(item, cart, setCart)
+                            Toasts.sucess(`${item.itemName} added to Cart` )
                         } } type="button" className="btn btn-success btn-block rounded-pill shadow">Add to Cart</button>
 
                     </div>
