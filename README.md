@@ -6,12 +6,18 @@ epamShop is a Web Application which simulates the purchase of online products in
 
   * Login View: 
       Simple login interface where users can log in according to one of two account types: USER type, which gives access to the the User View, and ADMIN type which gives access to the Administrator view.
+
       To log in as USER: 
-      Username: user
-      Password: user
+
+        Username: user
+
+        Password: user
+
       To log in as ADMIN
-      Username: admin
-      Password: admin
+
+        Username: admin
+
+        Password: admin
 
   * User View:
       A navigation var which has two tabs. The "Shop" tab where the user checks the products which are aligned in a card fashioned way and add them to the cart.
@@ -19,6 +25,8 @@ epamShop is a Web Application which simulates the purchase of online products in
   
   * Administrator View: 
       Also includes the navigation var the User View has but with an additional tab "Admin Page", here the user (in this case the administrator) has a list of all the existent products in epamShop. The users can add, update (uploading images is not supported) or delete products as they like (excluding the first four products which are the main epamShop's products,).
+
+
 
 
 # itemsAPI for the backend
