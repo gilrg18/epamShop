@@ -1,5 +1,5 @@
 # epamShop
-
+  
 epamShop is a Web Application which simulates the purchase of online products in which its users can see a catalog of epam related products, select the ones they like the most to add them to the cart and proceed to check the final price of their products
 
 * epamShop includes three different views:
@@ -30,14 +30,18 @@ epamShop is a Web Application which simulates the purchase of online products in
 
 
 # itemsAPI for the backend
+Repository: https://github.com/gilrg18/epamShop
 
-*Emphasize* _Backend for epamShop_
+ _Backend for epamShop_
 * CRUD created with:
   * NodeJS
   * Express to manage routes and handle api requests
   * MySQL to provide a model database
 
+  https://epam-shop.herokuapp.com/
+
 # myshop for the frontend
+Repository: https://github.com/gilrg18/epamFront
 
 * User Interface created with:
   * Node Js
@@ -45,3 +49,4 @@ epamShop is a Web Application which simulates the purchase of online products in
   * Axios to handle api requests
   * Bootstrap for styling
 
+  https://epam-shop-front.herokuapp.com/

@@ -7,9 +7,10 @@ const Login = (props) => {
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
 
-
+    
     const login = () => {
-        Axios.post('/login', {
+        // Axios.post('/login', {
+        Axios.post('https://epam-shop.herokuapp.com/login', {
             userID: username,
             password: password,
         }).then((response) => {

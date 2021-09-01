@@ -2,6 +2,8 @@
 import express from 'express';
 import routes from './src/routes/itemsRoutes.js';
 import userRoutes from './src/routes/userRoutes.js';
+import cors from 'cors';
+
 // const express = require("express") 
 // const routes = require('./src/routes/itemsRoutes')
 // const userRoutes = require('./src/routes/userRoutes')
@@ -9,7 +11,7 @@ import userRoutes from './src/routes/userRoutes.js';
 const app = express();
 const PORT = 3000;
 
-
+app.use(cors());
 app.use(express.urlencoded({ extended:true }));
 app.use(express.json());
 

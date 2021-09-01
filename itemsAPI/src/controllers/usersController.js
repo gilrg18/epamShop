@@ -7,7 +7,8 @@ connection.connect(err => {
   export const login = (req, res) => {
     const userID = req.body.userID,
     password = req.body.password;
-    connection.query("SELECT * FROM myitems.users WHERE userID = ? AND password = ?;",
+    // connection.query("SELECT * FROM myitems.users WHERE userID = ? AND password = ?;",
+    connection.query("SELECT * FROM heroku_a98b46e7617b377.users WHERE userID = ? AND password = ?;",
     [userID, password], 
     (err, result) => {
       if (err) {
@@ -28,7 +29,8 @@ connection.connect(err => {
       newPassword = req.body.password,
       newType = req.body.accountType;
     connection.query(
-      "INSERT INTO users (`userID`, `password`, `accountType`) VALUES (?, ?, ?)",
+      // "INSERT INTO myitems.users (`userID`, `password`, `accountType`) VALUES (?, ?, ?)",
+      "INSERT INTO heroku_a98b46e7617b377.users (`userID`, `password`, `accountType`) VALUES (?, ?, ?)",
       [newUserID, newPassword, newType],
       (err, rows) => {
         if (err) throw err;

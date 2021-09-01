@@ -10,7 +10,8 @@ connection.connect(err => {
 
 
 export const getItems = (req, res) => {
-  connection.query("SELECT itemID, itemName, itemDescription, price, image FROM myitems.items;", (err, rows, field) => {
+  //connection.query("SELECT itemID, itemName, itemDescription, price, image FROM myitems.items;", (err, rows, field) => {
+  connection.query("SELECT itemID, itemName, itemDescription, price, image FROM heroku_a98b46e7617b377.items;", (err, rows, field) => {  
     if (err) {
       throw err
     };
@@ -22,7 +23,8 @@ export const getItems = (req, res) => {
 export const getItemsWithID = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
-    "SELECT itemID, itemName, itemDescription, price FROM myitems.items WHERE itemID = ?;",
+    // "SELECT itemID, itemName, itemDescription, price FROM myitems.items WHERE itemID = ?;",
+    "SELECT itemID, itemName, itemDescription, price FROM heroku_a98b46e7617b377.items WHERE itemID = ?;",
     [theItemID],
     (err, rows) => {
       if (err) throw err;
@@ -39,7 +41,8 @@ export const createItem = (req, res) => {
     newDescription = req.body.itemDescription,
     newPrice = req.body.price;
   connection.query(
-    "INSERT INTO myitems.items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
+    // "INSERT INTO myitems.items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
+    "INSERT INTO heroku_a98b46e7617b377.items (`itemID`, `itemName`, `itemDescription`, `price`) VALUES (?, ?, ?, ?)",
     [newID, newName, newDescription, newPrice],
     (err, rows) => {
       if (err) throw err;
@@ -58,7 +61,8 @@ export const updateItem = (req, res) => {
     price = req.body.price;
 
   connection.query(
-    "UPDATE myitems.items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
+    // "UPDATE myitems.items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
+    "UPDATE heroku_a98b46e7617b377.items SET itemName = ?, itemDescription= ?, price= ? WHERE itemID = ?;",
     [newName, newDescription, price, idToUpdate],
     (err, rows) => {
       if (err) throw err;
@@ -72,7 +76,8 @@ export const updateItem = (req, res) => {
 export const deleteItem = (req, res) => {
   const theItemID = req.params.itemID;
   connection.query(
-    "DELETE FROM myitems.items WHERE itemID = ?;",
+    // "DELETE FROM myitems.items WHERE itemID = ?;",
+    "DELETE FROM heroku_a98b46e7617b377.items WHERE itemID = ?;",
     [theItemID],
     (err, rows) => {
       if (err) throw err;
