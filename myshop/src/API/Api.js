@@ -8,7 +8,6 @@ class Api {
             const items = await data.json();
             return items;
         } catch (e) {
-            console.log(`error: ${e}`)
             return null;
         }
 
@@ -49,9 +48,11 @@ class Api {
             props.setItems(items);
             Toasts.sucess(`Item ${item.itemName} has been added`)
         } catch (error) {
-            console.log(`error: ${error}`)
+            return null;
         }
-        handleClose();
+            handleClose();
+
+        
     }
 
 
@@ -75,7 +76,7 @@ class Api {
             props.setItems(items)
             Toasts.sucess(`Item ${item.itemName} has been updated`)
         } catch (error) {
-            console.log(`error: ${error}`)
+            return null;
         }
         handleClose();
     }
