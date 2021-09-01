@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemCard from './ItemCard';
-import Api from '../Api'
+import Api from '../API/Api'
 import { CartContext } from '../cartComponents/CartContext';
 import CartController from '../cartComponents/CartController'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Api from '../Api';
+import Api from '../API/Api';
 import UpdateModal from '../modalComponents/UpdateModal'
 import '../css/itemList.css'
 

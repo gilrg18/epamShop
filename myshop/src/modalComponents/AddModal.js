@@ -1,6 +1,6 @@
 import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import React, { useState } from 'react';
-import Api from '../Api';
+import Api from '../API/Api';
 
 
 const AddModal = (props) => {
