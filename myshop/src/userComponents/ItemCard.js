@@ -15,7 +15,7 @@ const ItemCard = (props) => {
                     <div className="card-body">
                         <h4 className="card-title">{item.itemName}</h4>
                         <p className="card-text">{item.itemDescription}</p>
-                        <p className="card-text">${item.price}</p>
+                        <p className="itemPrice">${item.price}</p>
                         <button onClick={() => {
                             addToCart(item, cart, setCart)
                             Toasts.sucess(`${item.itemName} added to Cart` )

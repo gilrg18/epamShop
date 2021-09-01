@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav, Badge } from 'react-bootstrap'
+import { Navbar, Nav} from 'react-bootstrap'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { CartProvider } from '../cartComponents/CartContext'
 import { FiShoppingCart } from 'react-icons/fi'

@@ -21,7 +21,6 @@ code {
 }
 
 .epamColor{
-  background-color: rgba(73,194,210,255);
   border: 3px solid #c5d34e;
 }
 
@@ -32,4 +31,9 @@ code {
 
 .space{
   margin: .2rem;
+}
+
+.itemPrice{
+  font-size: 1.6em;
+  font-weight: bolder;
 }

@@ -1,7 +1,7 @@
 class CartController {
 
     addToCart = (item, cart, setCart) => {
-        const itemToAdd = { itemID: item.itemID, itemName: item.itemName, price: item.price, image: item.image }
+        const itemToAdd = { itemID: item.itemID, itemName: item.itemName, price: item.price, itemDescription: item.itemDescription, image: item.image }
         const exist = cart.find(cartItem => cartItem.itemID === itemToAdd.itemID)
         if (exist) {
             setCart(
