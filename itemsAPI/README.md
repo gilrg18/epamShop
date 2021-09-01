@@ -9,7 +9,6 @@
 * [Install guide](https://www.youtube.com/watch?v=u96rVINbAUI&ab_channel=WebDevSimplified)
 * npm i --save express 
 * npm i --save nodemon 
-* npm i --save-dev babel-cli babel-preset-es2015 babel-preset-stage-0
 
 ## To run:
 **Server will run on port 3000**
