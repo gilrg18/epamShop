@@ -1,66 +1,53 @@
 import React from 'react'
 import { CartContext } from './CartContext'
-import { Badge, Accordion, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import CartController from '../cartComponents/CartController'
 const Cart = (props) => {
     const [cart, setCart] = React.useContext(CartContext);
-    const { addToCart, removeFromCart } = props;
-
-    const itemsPrice = cart.reduce((accumulator, currentItem) => accumulator + Number(currentItem.price) * currentItem.quantity, 0);
-    const shippingPrice = itemsPrice > 50 ? 0 : 10;
-    const totalPrice = itemsPrice + shippingPrice;
-    const totalItems = cart.reduce((accumulator, currentItem) => accumulator + currentItem.quantity, 0);
 
     return (
+        <div className="items">
+            {cart.map(item => {
+                return (
+                    <div className="epamColor product" key={item.itemID}>
+                        <div className="row">
+                            <div className="divPos col-md-3">
+                                <img className="divImg" src={item.image} alt="img" />
+                            </div>
+                            <div className="col-md-8">
+                                <div className="info">
+                                    <div className="row">
+                                        <div className="col-md-5 product-name">
+                                            <div className="product-name">
+                                                <div>{item.itemName}</div>
+                                                <div className="product-info">
+                                                    <div>Description: <span className="value">{item.itemDescription}</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4 quantity">
+                                            <label htmlFor="quantity">Quantity:</label>
+                                            <input readOnly value={item.quantity} className="form-control quantity-input" />
 
-         <Accordion defaultActiveKey="0">
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>
-                        Cart    {totalItems ? (<Badge pill bg="danger">{totalItems}</Badge>) : (' ')}
-                    </Accordion.Header>
-                    <Accordion.Body >
-                        <div>{cart.length === 0 && <div>{ }Empty Cart</div>}</div>
-
-                        {cart.map((item) => {
-                            return (
-                                <div className=" mb-4 center" key={item.itemID}>
-                                    <div>{item.itemName}</div>
-                                    <img className="img" src={item.image} alt="img"></img>
-                                    <div>
-                                        <Button variant="primary rounded-pill " onClick={() => {
-                                            addToCart(item, cart, setCart);
-                                        }}> + </Button>
-                                        {' '}
-                                        <Button variant="primary rounded-pill" onClick={() => {
-                                            removeFromCart(item, cart, setCart);
-                                        }}> - </Button>
+                                            <Button className="space" variant="primary rounded-pill " onClick={() => {
+                                                CartController.addToCart(item, cart, setCart);
+                                            }}> + </Button>
+                                            <Button className="space" variant="primary rounded-pill" onClick={() => {
+                                                CartController.removeFromCart(item, cart, setCart);
+                                            }}> - </Button>
+                                        </div>
+                                        <div className="col-md-3 price">
+                                            <span>${item.price}</span>
+                                        </div>
                                     </div>
-                                    <div>{item.quantity} x ${item.price}</div>
-                                </div>
-
-                            )
-                        })}
-                        <hr></hr>
-                        {cart.length !== 0 && (
-                            <div className="center">
-
-                                <div>
-                                    <div> Items Price </div>
-                                    <div> ${itemsPrice.toFixed(2)}</div>
-                                </div>
-                                <div>
-                                    <div> Shipping Price </div>
-                                    <div> ${shippingPrice.toFixed(2)}</div>
-                                </div>
-                                <div>
-                                    <strong> Total Price </strong>
-                                    <div> ${totalPrice.toFixed(2)}</div>
                                 </div>
                             </div>
-                        )}
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>                     
-
+                        </div>
+                    </div>
+                )
+            })
+            }
+        </div>
 
     );
 }
