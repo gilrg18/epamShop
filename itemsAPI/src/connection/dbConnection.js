@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     user:"b22ae5434a6703",
     password:"d2b75d36",
     //use your own password
-    //password: "kokoloko",
+    //password: 
     //database: "myitems"
     database: "heroku_a98b46e7617b377"
   });
